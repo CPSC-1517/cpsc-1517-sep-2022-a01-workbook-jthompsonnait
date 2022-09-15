@@ -82,17 +82,102 @@ namespace PracticeConsole.Data
         //  The system manages the internal storage for the accessor and mutator.
         //  There is NO additional logic applied to the data value.
 
-        public int Level { get; set; }
+        public SupervisoryLevel Level { get; set; }
         public double Years
-            { get { return _Years; } set { _Years = value; } }
-
-
-
-
-
+        { get { return _Years; } set { _Years = value; } }
 
         //  Constructor
+        //  Used to initialize the physical object (instance) during the
+        //   creation.
+        //  The results of the creation ensure that the coder gets an
+        //   instance in a known state.
+
+        //  If your class definition has NO constructor coded, then the data
+        //   members uses the auto implemented properties are set to the
+        //   C# default data values.
+
+        //  You can code one or more constrcutors in your class definition.
+        //  IF YOU CODE A CONSTRUCTOR FOR THE CLASS, YOU ARE RESPONSIBLE
+        //   FOR ALL CONSTRUCTORS USED BY THE CLASS.
+
+        //  Generally, if you are going to code your constructor(s), you
+        //   code two types.
+        //  Default:  This constructor does NOT take any parameters (it 
+        //             mimics the default system constructor).
+        //  Greedy:  This constructor has a list of parameters, one for each
+        //            properties declare for incoming data.
+        //
+        //  Syntax:  AccessType classname([list of parameters]) 
+        //             {constructor body}
+        //
+        //  IMPORTANT:  The constructor DOES NOT have a return data type.
+        //  You DO NOT call constructor directly, instead you call the
+        //   "new" operator.
+
+        //  Default constructor
+        public Employment()
+        {
+            //  Constructor Body:
+            //  a)  Empty (no code)
+            //  b)  assign literal values to your properties using this
+            //       constructor.
+            Level = SupervisoryLevel.TeamMember;  //  or any number we want.  So default not 0;
+            Title = "Unknown";
+        }
+
+        //  Greedy Constructor
+        //  Will take in value(s) for your fields(s)
+
+        public Employment(string title, SupervisoryLevel level, double years)
+        {
+            // constructor body
+            //  a) a parameter for each property
+            //  b)  you COULD do validation with the constructor instead of 
+            //       the property
+            //  c)  Validation for public readonly data members.
+            //  Validation for a property with a private set.
+            Title = title;
+            Level = level;
+            Years = years;
+        }
+
+
         //  Behavior (method)
+        //  Behavior are no different than method elsewhere
+
+        //  Syntax:  accesstype [static] returnDataType behaviorName (methodName)
+        //             ([list of parameters])
+        //             { code body}
+
+        //  There maybe times you wish to obtain all the data in your instance.
+        //   all at once.
+        //  Generally, to accomplish this, your class overrides the
+        //    .ToString() method of the class.
+
+        public override string ToString()
+        {
+            // common separate value string (csv)
+            return $"{Title},{Level},{Years}";
+        }
+
+        public void SetEmploymentResponsibilityLevel(SupervisoryLevel level)
+        {
+            //  you could validate within this method to ensure acceptable value.
+            if (level < 0)
+            {
+                throw new Exception("Responsibility must be a positive value");
+            }
+            Level = level;
+        }
+
+
+
+
+
+
+
+
+
 
 
     }
