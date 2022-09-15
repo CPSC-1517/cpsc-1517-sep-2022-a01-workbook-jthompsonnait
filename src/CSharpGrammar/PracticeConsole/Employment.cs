@@ -84,7 +84,15 @@ namespace PracticeConsole.Data
 
         public SupervisoryLevel Level { get; set; }
         public double Years
-        { get { return _Years; } set { _Years = value; } }
+        { get { return _Years; } 
+            set {
+                if (!Utilities.IsPositive(value))
+                {
+                    throw new Exception("Year cannot be a negative value");
+                }
+                _Years = value; 
+            } 
+        }
 
         //  Constructor
         //  Used to initialize the physical object (instance) during the
