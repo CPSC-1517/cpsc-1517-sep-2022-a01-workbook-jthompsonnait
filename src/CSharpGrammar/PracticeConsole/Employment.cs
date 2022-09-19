@@ -9,8 +9,6 @@ namespace PracticeConsole.Data
 {
     public class Employment
     {
-
-
         //  An instance of this class will hold data 
         //  about a person's employment
         //  The code of this class is definition of 
