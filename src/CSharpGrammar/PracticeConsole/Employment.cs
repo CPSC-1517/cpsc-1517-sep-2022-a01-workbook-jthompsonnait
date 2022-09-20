@@ -163,7 +163,11 @@ namespace PracticeConsole.Data
         public override string ToString()
         {
             // common separate value string (csv)
+            // The string is being created using string interpolation
             return $"{Title},{Level},{Years}";
+
+            //  straight concatenation of strings
+            //  return Title + "," + Level + "," + Years.ToString();
         }
 
         public void SetEmploymentResponsibilityLevel(SupervisoryLevel level)

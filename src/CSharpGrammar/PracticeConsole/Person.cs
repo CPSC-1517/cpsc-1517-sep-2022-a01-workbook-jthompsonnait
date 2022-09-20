@@ -58,10 +58,11 @@ namespace PracticeConsole.Data
 
         //  Composition actually uses the other class as property/fields
         //   within the definition of the class being defined.
+        //  In this example, address is a field (data member)
         public ResidentAddress Address;
 
         //  Composition using another class
-        public List<Employment> EmploymentPositions { get; set; }
+        public List<Employment> EmploymentPositions { get; private set; }
 
         //public Person()
         //{
@@ -100,6 +101,15 @@ namespace PracticeConsole.Data
             Address = address;
 
         }
+        public void ChangeName(string firstName, string lastName)
+        {
+            FirstName = firstName.Trim();
+            LastName = lastName.Trim();
+        }
 
+        public void AddEmployment(Employment employment)
+        {
+            EmploymentPositions.Add(employment);
+        }
     }
 }
