@@ -34,7 +34,7 @@
                     display text used by the page user to make the selection
                                   is the visible portion of the selection line
 
-    <textarea>  display a large text input box area for the web page user to 
+    <textarea>  display a large text input box area for the web page user to
                     enter a large amount of data
                 display size is controlled using rows=(vertical) and cols=(horizonatal)
                 auto-scroll bars
@@ -44,14 +44,14 @@
                 reset:   locally clear the form and does NOT send to server for processing
                 button:  ran locally (rarely used)
 
-                you can assign a specific value associated with the button that can be 
+                you can assign a specific value associated with the button that can be
                     logically test in your ModelPage (value=) (optional)
                 to identify the contrl you can use (optional)
                     id= basically used by javascript to identify the control
                     name= is used by the Request["xxx"] to identify the contrl in your C# code
                     value can be the same
                 helper tag to identifer processing OnPost on the ModelPage (asp-page-helper)
- 
+
 
 *@
 
@@ -75,11 +75,18 @@
         <textarea asp-for="Comments" rows="5" cols="100"></textarea>
 
     </label>
-    <br/>
+    <br />
 
-    <button type="submit" value="bdmSubmit" id="jsIdentifier"
-        name="RequestObjectIdentifier">Press Me (submit form)</button>
+    <button type="submit" value="bdmSubmitA" id="jsIdentifierA"
+            name="RequestObjectIdentifierA" asp-page-handler="A">
+        Press Me A(submit form)
+    </button>
+    &nbsp;&nbsp;  @*add spaces between buttons (horizonal)*@
+    <button type="submit" value="bdmSubmitB" id="jsIdentifierB"
+            name="RequestObjectIdentifierB" asp-page-handler="B">
+        Press Me B(submit form)
+    </button>
 
 </form>
-<br/>
+<br />
 <p>@Model.FeedBack</p>
