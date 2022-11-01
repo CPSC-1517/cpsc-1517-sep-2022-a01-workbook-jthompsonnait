@@ -8,7 +8,7 @@ using WestWindSystem.DAL;
 
 namespace WestWindSystem
 {
-    public static class BackendExtensions
+    public static class WWBackendExtensions
     {
         public static void WWBackendDependencies(this IServiceCollection services,
             Action<DbContextOptionsBuilder> options)
@@ -37,10 +37,14 @@ namespace WestWindSystem
              );
             services.AddTransient<RegionServices>((ServiceProvider) =>
             {
+                //  get the dbcontext class that has been registered
                 var context = ServiceProvider.GetService<WestWindContext>();
+                //  create an instance of the service class (BuidVersionServices) supplying
+                //      the context reference to the service class
+                //  return the service class instance
                 return new RegionServices(context);
             }
-         );
+             );
         }
     }
 }

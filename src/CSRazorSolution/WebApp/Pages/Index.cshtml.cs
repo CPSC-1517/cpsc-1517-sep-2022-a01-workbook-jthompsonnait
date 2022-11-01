@@ -13,6 +13,7 @@ namespace WebApp.Pages
         #region Private service fields & class constructor
         private readonly ILogger<IndexModel> _logger;
         private readonly BuildVersionServices _buildVersionServices;
+        private readonly RegionServices _regionServices;
         /*
          *  Services that are registered using AddTransisent<>()
          *      can be accessed on the constructor of the web page class (PageMode)
@@ -27,15 +28,17 @@ namespace WebApp.Pages
          *      reference in a private readonly field
          *  This variable will be available to all methods within this class.
         */
-        public IndexModel(ILogger<IndexModel> logger, BuildVersionServices buildVersionServices)
+        public IndexModel(ILogger<IndexModel> logger, BuildVersionServices buildVersionServices, RegionServices regionServices)
         {
             _logger = logger;
             _buildVersionServices = buildVersionServices;
+            _regionServices = regionServices;
         }
         #endregion
         public string MyName { get; set; }
 
         public BuildVersion BuildVersion { get; set; }
+        public Region Region { get; set; }
 
         public void OnGet()
         {
