@@ -17,7 +17,9 @@ namespace WebApp.Pages.Samples
         //  This is bond to the inout control via asp-for
         //  This is a two way binding of both out and in
         //  Data is move out and in FOR YOU AUTOMATICALLY
-        [BindProperty]
+        //  SupportsGet = true will allow this property to be matched to 
+        //      a routing parameter of the same name.
+        [BindProperty(SupportsGet = true)]
         public int RegionID { get; set; }
 
         [TempData]
@@ -29,10 +31,6 @@ namespace WebApp.Pages.Samples
         }
 
         public void OnGet()
-        {
-        }
-
-        public void OnPost()
         {
             if (RegionID > 0)
             {
@@ -46,10 +44,32 @@ namespace WebApp.Pages.Samples
                     FeedBackMessage = $"ID: {RegionInfo.RegionId} Description: {RegionInfo.RegionDescription}";
                 }
             }
-            else
+        }
+
+        //  generic failing post handler 
+        public void OnPost()
+        {
+            FeedBackMessage = "WARNING!!!  No OnPost page handler set.  Execution default to the code OnPost()";
+        }
+
+        //  specific post method to use in conjunction with asp-page-handler="xxx"
+        public IActionResult OnPostFetch()
+        {
+            if (RegionID < 1)
             {
-                FeedBackMessage = "Region id is a non-zero positive whole number";
+                FeedBackMessage = "Required: Region id is a non-zero positive whole number";
             }
+            //  The receiving "RegionID" ia the routing parameter
+            //  The sending "RegionID" is a BindProperty field
+            return RedirectToPage(new {RegionID = RegionID});
+        }
+
+        public IActionResult OnPostClear()
+        {
+            FeedBackMessage = "";
+            //RegionID = 0;
+            ModelState.Clear();
+           return RedirectToPage(new {RegionID = (int?)null});
         }
     }
 }
