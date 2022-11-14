@@ -36,6 +36,32 @@ namespace WestWindSystem.BLL
             return info;
         }
 
+        //  Get all the records of the SQL Region table
+        //  Return as a List<T>
+        public List<Region> Region_List()
+        {
+            //  Linq querys use two generic collection types
+            //  IQueryable - This is the data collection returned from SQL
+            //  IEnumerable -   This is the data collection in local memory
+            //  You can convert either of these collections to a List<T> using .ToList()
+            IEnumerable<Region> info = _context.Regions
+                                        .OrderBy(x => x.RegionDescription);
+            return info.ToList();
+
+            //  One could convert the returned data collection to a List<T> by
+            //      placing the conversion method directly on your query
+            //List<Region> info = _context.Regions
+            //    .OrderBy(x => x.RegionDescription).ToList();
+            //return info
+
+            //  James way of returning data.
+            //  We do not make any changes to info so we can just return the list.
+            //return _context.Regions
+            //    .OrderBy(x => x.RegionDescription).ToList();
+
+        }
+
+
         #endregion
     }
 }
