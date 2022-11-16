@@ -76,13 +76,13 @@
                                 <select disabled="true">
                                     @foreach (var region in Model.RegionList)
                                     {
-                                        if (region.RegionId == item.RegionID)
+                                        if (region.RegionID == item.RegionID)
                                         {
-                                            <option value="@region.RegionId" selected>@region.RegionDescription</option>
+                                            <option value="@region.RegionID" selected>@region.RegionDescription</option>
                                         }
                                         else
                                         {
-                                            <option value="@region.RegionId">@region.RegionDescription</option>
+                                            <option value="@region.RegionID">@region.RegionDescription</option>
                                         }
                                     }
                                 </select>

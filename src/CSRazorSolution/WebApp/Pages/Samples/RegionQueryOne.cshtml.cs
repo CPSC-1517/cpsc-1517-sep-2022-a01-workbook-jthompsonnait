@@ -56,7 +56,7 @@ namespace WebApp.Pages.Samples
                 }
                 else
                 {
-                    FeedBackMessage = $"ID: {RegionInfo.RegionId} Description: {RegionInfo.RegionDescription}";
+                    FeedBackMessage = $"ID: {RegionInfo.RegionID} Description: {RegionInfo.RegionDescription}";
                 }
             }
         }

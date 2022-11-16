@@ -44,13 +44,13 @@
                 //  To retain the selection, you need to specify a row to be
                 //      the selected option
                 //  This is done with the selected attribute on the value
-                if (item.RegionId == Model.RegionID)
+                if (item.RegionID == Model.RegionID)
                 {
-                    <option value="@item.RegionId" selected="true">@item.RegionDescription</option>
+                    <option value="@item.RegionID" selected="true">@item.RegionDescription</option>
                 }
                 else
                 {
-                    <option value="@item.RegionId">@item.RegionDescription</option>
+                    <option value="@item.RegionID">@item.RegionDescription</option>
                 }
             }
         </select>
