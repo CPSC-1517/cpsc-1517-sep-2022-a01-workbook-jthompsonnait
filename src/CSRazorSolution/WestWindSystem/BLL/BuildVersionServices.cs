@@ -1,5 +1,4 @@
-﻿#nullable disable
-#region Additional Namespaces
+﻿#region Additional Namespaces
 using WestWindSystem.DAL;
 using WestWindSystem.Entities;
 #endregion

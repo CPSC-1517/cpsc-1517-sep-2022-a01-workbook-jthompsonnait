@@ -58,7 +58,7 @@
                 <thead>
                     @*Used for column titles*@
                     <tr>
-                        <th>Territory</th>
+                        <th>Region ID</th>
                         <th>Name</th>
                         <th>Region</th>
                     </tr>
@@ -70,7 +70,26 @@
                     @foreach (var item in Model.TerritoryInfo)
                     {
                         <tr>
-                            <td>@item.TerritoryID</td>
+                            @*
+                This example will send the TerritoryID to
+                another page.
+                Use the anchor tag to accomplish this task
+                The href page value MUST be reference from the Page folder
+                The value to be passed is attached to the end of the page reference
+                In this example, the value will be passed to the receiving page as a routing parameter
+                You can send multiple values to the new page
+                The receiving page MUST have the same number of routing parameters as those pass AND the
+                    order of the routing paramters is IMPORTANT
+                Pager reference syntax: /pathname/value[/value/...]
+                The text of your anchor tag DOES NOT need to be the value that is being passed
+                
+                CHANGE TO REGION ID FOR Receiving Page Example
+                *@
+                            <td>
+                                <a href="/Samples/ReceivingPage/@item.RegionID">
+                                    Edit this territory
+                                </a>
+                            </td>
                             <td>@item.TerritoryDescription</td>
                             <td>
                                 <select disabled="true">
@@ -86,13 +105,47 @@
                                         }
                                     }
                                 </select>
-
                             </td>
                         </tr>
                     }
                 </tbody>
                 <tfoot>
-                    @*Used for summary table information eg totals*@
+                    @*Used for summary table information eg totals
+            used for displaying paging information
+            *@
+                    <tr>
+                        @{
+                            //  The pageRef is the string representation of the
+                            //      value to be displayed and it's numeric
+                            //  The string maybe a character line : Next
+                            //  The string maybe a numeric : 4
+                            //  FIrst Previous 1 2 3 4 5 Next Last
+                            foreach (var pageRef in Model.Pager)
+                            {
+                                if (pageRef == Model.Pager.CurrentPage)
+                                {
+                                    <b>@pageRef.Text</b>
+                                }
+                                else
+                                {
+                                    //  Create an anchor tag to move to
+                                    //    the desired collection page
+                                    //  The target of the anchor destination
+                                    //      is your current web cshtml
+                                    //      tHis will cause a OnGet issue
+                                    //  .Page is the numeric representation
+                                    //      of the desired page
+                                    //  For the asp-page your page name reference
+                                    //      MUST be based from the folder name Pages.
+                                    <a title="Page @pageRef.Page"
+                   asp-page="/Samples/PartialFilterSearch"
+                   asp-route-currentpage="@pageRef.Page">
+                                        @pageRef.Text
+                                    </a>
+                                }
+                            }
+                        }
+                    </tr>
                 </tfoot>
             </table>
         }

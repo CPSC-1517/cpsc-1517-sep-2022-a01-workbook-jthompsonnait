@@ -31,7 +31,7 @@ namespace WestWindSystem.BLL
             //  If no data was returned from SQL for the query, the returned value will be null.
 
             Region info = _context.Regions
-                                   .Where(aColectionRow => aColectionRow.RegionID == regionID)
+                                   .Where(x => x.RegionID == regionID)
                                    .FirstOrDefault();
             return info;
         }

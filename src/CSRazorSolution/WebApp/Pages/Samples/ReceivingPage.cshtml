@@ -1,0 +1,11 @@
+﻿@page "{RegionID?}"
+@*{RegionID}/{..}/{..}*@
+@model WebApp.Pages.Samples.ReceivingPageModel
+@{
+    ViewData["Title"] = "Receiving passed data";
+}
+<h1>Receiving Pass of passed data</h1>
+
+<p>The value you passed was @Model.RegionID</p>
+
+<p>@Model.Feedback</p>
