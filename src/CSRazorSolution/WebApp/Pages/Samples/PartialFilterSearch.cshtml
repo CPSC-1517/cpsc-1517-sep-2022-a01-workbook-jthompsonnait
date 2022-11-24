@@ -58,7 +58,7 @@
                 <thead>
                     @*Used for column titles*@
                     <tr>
-                        <th>Region ID</th>
+                        <th>Territory ID</th>
                         <th>Name</th>
                         <th>Region</th>
                     </tr>
@@ -86,22 +86,22 @@
                 CHANGE TO REGION ID FOR Receiving Page Example
                 *@
                             <td>
-                                <a href="/Samples/ReceivingPage/@item.RegionID">
+                                <a href="/Samples/ReceivingPage/@item.TerritoryID">
                                     Edit this territory
                                 </a>
                             </td>
                             <td>@item.TerritoryDescription</td>
                             <td>
                                 <select disabled="true">
-                                    @foreach (var region in Model.RegionList)
+                                    @foreach (var region in Model.TerritoryInfo)
                                     {
-                                        if (region.RegionID == item.RegionID)
+                                        if (region.TerritoryID == item.TerritoryID)
                                         {
-                                            <option value="@region.RegionID" selected>@region.RegionDescription</option>
+                                            <option value="@region.TerritoryID" selected>@region.TerritoryID</option>
                                         }
                                         else
                                         {
-                                            <option value="@region.RegionID">@region.RegionDescription</option>
+                                            <option value="@region.TerritoryID">@region.TerritoryID</option>
                                         }
                                     }
                                 </select>

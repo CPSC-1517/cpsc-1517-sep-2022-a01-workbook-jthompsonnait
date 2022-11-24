@@ -16,22 +16,21 @@ namespace WebApp.Pages.Samples
         }
 
         [BindProperty(SupportsGet = true)]
-        public int? RegionID { get; set; }
+        public int? TerritoryID { get; set; }
         [TempData]
         public string Feedback { get; set; }
         public void OnGet()
         {
+
             //  Since the internet is a stateless environment, you need to
             //      obtain any list data that is required by your controls or local
             //      logic on EVERY instance of the pae being processed
-            if (RegionID > 0)
+            if (TerritoryID > 0)
             {
-                Region regionInfo = _regionServices.Region_GetByID((int)RegionID);
-                Feedback = $"ID: {regionInfo.RegionID} Description: {regionInfo.RegionDescription}";
+
             }
             else
             {
-                Feedback = "Region ID is not valid.  No region Found";
             }
         }
     }
