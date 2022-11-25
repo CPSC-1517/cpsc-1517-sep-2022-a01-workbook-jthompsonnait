@@ -26,5 +26,8 @@ namespace WestWindSystem.Entities
         [ForeignKey("OrderID")]
         [InverseProperty("OrderDetails")]
         public virtual Order Order { get; set; }
+        [ForeignKey("ProductID")]
+        [InverseProperty("OrderDetails")]
+        public virtual Product Product { get; set; }
     }
 }

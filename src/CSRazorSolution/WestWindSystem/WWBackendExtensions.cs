@@ -55,6 +55,36 @@ namespace WestWindSystem
                     return new TerritoryServices(context);
                 }
             );
+            services.AddTransient<CategoryServices>((ServiceProvider) =>
+                {
+                    //  get the dbcontext class that has been registered
+                    var context = ServiceProvider.GetService<WestWindContext>();
+                    //  create an instance of the service class (TerritoryServices) supplying
+                    //      the context reference to the service class
+                    //  return the service class instance
+                    return new CategoryServices(context);
+                }
+            );
+            services.AddTransient<SupplierServices>((ServiceProvider) =>
+                {
+                    //  get the dbcontext class that has been registered
+                    var context = ServiceProvider.GetService<WestWindContext>();
+                    //  create an instance of the service class (TerritoryServices) supplying
+                    //      the context reference to the service class
+                    //  return the service class instance
+                    return new SupplierServices(context);
+                }
+            );
+            services.AddTransient<ProductServices>((ServiceProvider) =>
+                {
+                    //  get the dbcontext class that has been registered
+                    var context = ServiceProvider.GetService<WestWindContext>();
+                    //  create an instance of the service class (TerritoryServices) supplying
+                    //      the context reference to the service class
+                    //  return the service class instance
+                    return new ProductServices(context);
+                }
+            );
         }
     }
 }
