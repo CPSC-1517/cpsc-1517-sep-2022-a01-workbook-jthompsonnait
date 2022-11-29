@@ -1,12 +1,12 @@
 ﻿@page "{productid?}"
 @model WebApp.Pages.Samples.ProductCRUDModel
 @{
-        ViewData["Title"] = "Product Maintenance";
+    ViewData["Title"] = "Product Maintenance";
 
 }
 
 <style>
-   :root {
+    :root {
         --max-body-width: 60rem;
     }
 
@@ -14,7 +14,7 @@
         display: flex;
     }
 
-    .onethird{
+    .onethird {
         width: 31%;
         margin-right: 2%;
     }
@@ -43,8 +43,74 @@
 <form method="post">
 
     @* TODO: setup the parts of the Product*@
-
-
+    @*
+        Create a contrl that will hold the product pkey value
+        This control should NOT be changeable IF your pkey is an IDENTITY
+        This control CAN ve visible or hidden, which is a design consideration.
+    *@
+    
+    <label>
+        ID:
+        <input type="text" asp-for="ProductInfo.ProductID" readonly data-val="false"/>
+    </label>
+    <label>
+        Name:
+        <input type="text" asp-for="ProductInfo.ProductName" placeholder="Product Name"/>
+    </label>
+    <label>
+        Category:
+        <select asp-for="ProductInfo.CategoryID">
+            @foreach (var item in Model.CategoryList)
+            {
+                <option value="@item.CategoryID"
+                        selected=@(Model.ProductInfo != null && item.CategoryID == Model.ProductInfo.CategoryID)>
+                    @item.CategoryName
+                </option>
+            }
+        </select>
+    </label>
+    <label>
+        Supplier:
+        <select asp-for="ProductInfo.SupplierID">
+            @foreach (var item in Model.SupplierList)
+            {
+                <option value="@item.SupplierID"
+                        selected=@(Model.ProductInfo != null && item.SupplierID == Model.ProductInfo.SupplierID)>
+                    @item.CompanyName
+                </option>
+            }
+        </select>
+    </label>
+    <label>
+        Qty Per Unit:
+        <input type="text" asp-for="ProductInfo.QuantityPerUnit" placeholder="Unit Size"/>
+    </label>
+    <label>
+        Min. Order:
+        <input type="text" asp-for="ProductInfo.MinimumOrderQuantity" placeholder="Minimum Order Qty"/>
+    </label>
+    <label>
+        Unit Price:
+        <input type="text" asp-for="ProductInfo.UnitPrice" placeholder="Unit Price"/>
+    </label>
+    <label>
+        Units on Order:
+        <input type="text" asp-for="ProductInfo.UnitsOnOrder" placeholder="Unit on Order"/>
+    </label>
+    
+    @*
+        For a checkbox, the transfer of data by default is either: not checked -> null, checked -> one
+        If you are expecting a boolean (true/false) then use the attribute value="true"
+            This will result in: not checked -> null, checked -> true
+            Why does this work.  REMEMBER: when an instance is created, the properties in your instance
+            will be set to: a)  system defaults depending on datatype or b)  constructor assignments.
+            THEREFORE the default of a boolean propert will be "false"
+    *@
+    <label>
+        Discontinued
+        <input type="checkbox" asp-for="ProductInfo.Discontinued" value="true"/>
+    </label>
+    <br/><br/>
     @* Managing the buttons, restricting user access*@
     @if (Model.ProductInfo != null)
     {
@@ -52,22 +118,20 @@
         <button type="submit" asp-page-handler="Update">Update</button>
         @* add Javascript prompt for delete confirmation using the onclick *@
         <button type="submit" asp-page-handler="Delete" formnovalidate
-                onclick="return confirm('Are you sure you wish to discontinue the product?')">
+            onclick="return confirm('Are you sure you wish to discontinue the product?')">
             Delete
         </button>
-        <button type="submit" asp-page-handler="Clear" formnovalidate>Clear</button>
-        <button type="submit" asp-page-handler="Search" formnovalidate>Search</button>
     }
     else
     {
-    <button type="submit" asp-page-handler="New">Save New</button>
-    <button type="submit" asp-page-handler="Update" disabled>Update</button>
-    @* add Javascript prompt for delete confirmation using the onclick *@
-    <button type="submit" asp-page-handler="Delete" formnovalidate disabled
+        <button type="submit" asp-page-handler="New">Save New</button>
+        <button type="submit" asp-page-handler="Update" disabled>Update</button>
+        @* add Javascript prompt for delete confirmation using the onclick *@
+        <button type="submit" asp-page-handler="Delete" formnovalidate disabled
             onclick="return confirm('Are you sure you wish to discontinue the product?')">
-        Delete
-    </button>
+            Delete
+        </button>
+    }
     <button type="submit" asp-page-handler="Clear" formnovalidate>Clear</button>
     <button type="submit" asp-page-handler="Search" formnovalidate>Search</button>
-    }
 </form>
