@@ -157,7 +157,8 @@ namespace WestWindSystem.BLL
 
 
             //during the commit, SaveChanges() returns the number of rows affected
-            return _context.SaveChanges();
+            _context.SaveChanges();
+            return item.ProductID;
         }
 
         public int Product_DeleteProduct(Product item)
@@ -222,7 +223,8 @@ namespace WestWindSystem.BLL
 
 
             //during the commit, SaveChanges() returns the number of rows affected
-            return _context.SaveChanges();
+             _context.SaveChanges();
+             return item.ProductID;
         }
 
         #endregion
