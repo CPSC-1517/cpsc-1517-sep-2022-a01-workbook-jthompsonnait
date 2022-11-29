@@ -28,6 +28,17 @@
         width: 60px;
     }
 </style>
+@*
+    Include the validation libraries on the web page.
+    This is done by using the RenderSection Scripts
+    located on the _Layout page (at the bottom)
+    
+    RenderSections can be placed in anywhere on your cshtml page.
+*@
+@section Scripts
+{
+    <partial name="Shared/_ValidationScriptsPartial"/>
+}
 
 <h1>Product Maintenance: CRUD Product ID : @Model.productid</h1>
 
@@ -56,6 +67,7 @@
     <label>
         Name:
         <input type="text" asp-for="ProductInfo.ProductName" placeholder="Product Name"/>
+        <span asp-validation-for="ProductInfo.ProductName"></span>
     </label>
     <label>
         Category:
@@ -68,6 +80,7 @@
                 </option>
             }
         </select>
+        <span asp-validation-for="ProductInfo.CategoryID"></span>
     </label>
     <label>
         Supplier:
@@ -80,22 +93,27 @@
                 </option>
             }
         </select>
+        <span asp-validation-for="ProductInfo.SupplierID"></span>
     </label>
     <label>
         Qty Per Unit:
         <input type="text" asp-for="ProductInfo.QuantityPerUnit" placeholder="Unit Size"/>
+        <span asp-validation-for="ProductInfo.QuantityPerUnit"></span>
     </label>
     <label>
         Min. Order:
         <input type="text" asp-for="ProductInfo.MinimumOrderQuantity" placeholder="Minimum Order Qty"/>
+        <span asp-validation-for="ProductInfo.MinimumOrderQuantity"></span>
     </label>
     <label>
         Unit Price:
         <input type="text" asp-for="ProductInfo.UnitPrice" placeholder="Unit Price"/>
+        <span asp-validation-for="ProductInfo.UnitPrice"></span>
     </label>
     <label>
         Units on Order:
         <input type="text" asp-for="ProductInfo.UnitsOnOrder" placeholder="Unit on Order"/>
+        <span asp-validation-for="ProductInfo.UnitsOnOrder"></span>
     </label>
     
     @*
