@@ -217,13 +217,16 @@ namespace WestWindSystem.BLL
             //stage the logical delete
             item.Discontinued = true;
             EntityEntry<Product> updating = _context.Entry(item);
-            //flag the entity to be deleted
+            //flag the entity to be deleted (soft delete)
             updating.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+
+            //  *****   Flag to the entity to delete (HARD DELETE)   *****
+            //updating.State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
 
 
 
             //during the commit, SaveChanges() returns the number of rows affected
-             _context.SaveChanges();
+            _context.SaveChanges();
              return item.ProductID;
         }
 
