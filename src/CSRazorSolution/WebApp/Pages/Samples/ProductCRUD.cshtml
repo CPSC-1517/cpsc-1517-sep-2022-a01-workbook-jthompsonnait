@@ -60,10 +60,13 @@
         This control CAN ve visible or hidden, which is a design consideration.
     *@
     
-    <label>
-        ID:
-        <input type="text" asp-for="ProductInfo.ProductID" readonly data-val="false"/>
-    </label>
+@if(Model.productid != null)
+    {
+        <label>
+            ID:
+            <input type="text" asp-for="ProductInfo.ProductID" readonly data-val="false" required="false" />
+        </label>
+    }
     <label>
         Name:
         <input type="text" asp-for="ProductInfo.ProductName" placeholder="Product Name"/>
